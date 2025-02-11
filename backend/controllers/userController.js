@@ -83,9 +83,14 @@ const seeProfile = async (req, res) => {
 
 
 
-const purchaseCourse = async (req, res) => {
+ const purchaseCourse = async (req, res) => {
     try {
         const { userId, courseId } = req.params;
+
+        // Check if the user making the request matches the userId
+        if (req.user._id.toString() !== userId) {
+            return res.status(403).json({ message: 'Unauthorized' });
+        }
 
         // Check if the course exists
         const course = await Course.findById(courseId);
@@ -112,7 +117,6 @@ const purchaseCourse = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Internal server error', error: error.message });
     }
-
 };
  const getPurchasedCourses = async (req, res) => {
     try {
