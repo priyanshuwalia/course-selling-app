@@ -67,9 +67,9 @@ const sigIn = async (req,res)=>{
 }
 const seeProfile = async (req, res) => {
     try {
-        const userId = req.user.id; // Extract user ID from token payload
-        // Fetch user details from database (Assuming you have a User model)
-        const user = await User.findById(userId).select("-password"); // Exclude password
+        const userId = req.user.id; 
+        
+        const user = await User.findById(userId).select("-password"); 
 
         if (!user) {
             return res.status(404).json({ error: "User not found" });
@@ -87,29 +87,29 @@ const seeProfile = async (req, res) => {
     try {
         const { userId, courseId } = req.params;
 
-        // Check if the user making the request matches the userId
+        
         if (req.user._id.toString() !== userId) {
             return res.status(403).json({ message: 'Unauthorized' });
         }
 
-        // Check if the course exists
+        
         const course = await Course.findById(courseId);
         if (!course) {
             return res.status(404).json({ message: 'Course not found' });
         }
 
-        // Check if the user exists
+        
         const user = await User.findById(userId);
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // Check if the user already purchased the course
+        
         if (user.purchasedCourses.includes(courseId)) {
             return res.status(400).json({ message: 'Course already purchased' });
         }
 
-        // Add the course to the user's purchasedCourses array
+        
         user.purchasedCourses.push(courseId);
         await user.save();
 
@@ -122,7 +122,7 @@ const seeProfile = async (req, res) => {
     try {
         const { userId } = req.params;
 
-        // Find the user and populate the purchasedCourses field
+        
         const user = await User.findById(userId).populate('purchasedCourses');
         if (!user) {
             return res.status(404).json({ message: 'User not found' });

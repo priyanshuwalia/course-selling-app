@@ -4,6 +4,15 @@ const authMiddleware = require("../middlewares/authMiddleware");
 const Course = require("../models/Course");
 const User = require("../models/User");
 
+router.get("/api/courses/available", async (req, res) => {
+    try {
+      const courses = await Course.find();
+      res.json(courses);
+    } catch (error) {
+      res.status(500).json({ message: "Error fetching courses" });
+    }
+  });
+
 // ✅ Get all available courses with search & filter
 router.get("/courses/all", async (req, res) => {
     try {

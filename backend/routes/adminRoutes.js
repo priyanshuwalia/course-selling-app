@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const adminMiddleware = require("../middlewares/adminMiddleware"); 
 const Course = require("../models/Course"); 
-const Lecture = require("../models/Lecture");
+
 const Quiz = require("../models/Quiz"); 
 
 
