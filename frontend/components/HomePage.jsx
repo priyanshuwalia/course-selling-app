@@ -5,6 +5,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Reviews from "../components/Reviews";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 const stats = [
@@ -14,6 +15,7 @@ const stats = [
 ];
 
 export default function HomePage() {
+  const navigate = useNavigate();
   useEffect(() => {
     gsap.from(".feature", {
       scrollTrigger: {
@@ -51,6 +53,7 @@ export default function HomePage() {
           className="mt-6 px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-full text-lg font-semibold shadow-lg"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => navigate("/signup")}
         >
           Get Started
         </motion.button>

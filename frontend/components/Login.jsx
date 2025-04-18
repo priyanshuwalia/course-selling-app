@@ -16,8 +16,15 @@ const Login = () => {
         email,
         password,
       });
-      localStorage.setItem("token", res.data.token);
-      navigate("/dashboard");
+      const { token, role } = response.data;
+
+      localStorage.setItem("token", token); // Store token
+      localStorage.setItem("role", role);
+      if (role === "admin") {
+        navigate("/admin-dashboard");
+      } else {
+        navigate("/student-dashboard");
+      }
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }

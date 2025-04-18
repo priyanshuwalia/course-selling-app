@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FiLogOut, FiBook, FiHome, FiShoppingCart } from "react-icons/fi";
 
-const Dashboard = () => {
+const StudentDashboard = () => {
   const [purchasedCourses, setPurchasedCourses] = useState([]);
   const [availableCourses, setAvailableCourses] = useState([]);
   const navigate = useNavigate();
@@ -123,4 +123,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default StudentDashboard;

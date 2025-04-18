@@ -23,6 +23,7 @@ const Signup = () => {
       setError(err.response?.data?.message || "Signup failed");
     }
   };
+  const [role, setRole] = useState("student");
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 to-black">
@@ -81,7 +82,36 @@ const Signup = () => {
                 required
               />
             </div>
+            <div>
+              <label className="block text-gray-700 text-lg font-semibold mb-2">
+                Select Your Role
+              </label>
+              <div className="flex space-x-6">
+                <label className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="student"
+                    checked={role === "student"}
+                    onChange={() => setRole("student")}
+                    className="w-5 h-5 accent-blue-600"
+                  />
+                  <span className="text-gray-800">Student</span>
+                </label>
 
+                <label className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="role"
+                    value="admin"
+                    checked={role === "admin"}
+                    onChange={() => setRole("admin")}
+                    className="w-5 h-5 accent-purple-600"
+                  />
+                  <span className="text-gray-800">Admin</span>
+                </label>
+              </div>
+            </div>
             <button
               type="submit"
               className="w-full bg-gray-800 text-white py-3 rounded-lg mt-2 hover:bg-gray-900"
